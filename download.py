@@ -14,9 +14,9 @@ link_list = []
 for link in soup.find_all("a"):
 	link_list.append("http://www.wallyswebpages.net/moorzy/Rock/" + link.get('href'))
 
-print "Found %d links." % len(link_list) 
+print "Found {} links.".format(len(link_list))  
 
-print "Started download at: " + str(datetime.datetime.now())
+print "Started download at: {}".format(str(datetime.datetime.now())) 
 
 #Use wget module to download links
 os.chdir('C:\\Users\\Brandon\\Music') 
@@ -25,13 +25,13 @@ download_count = 0
 for link in link_list:
 	wget.download(link)
 	download_count += 1
-	print "Downloaded: %d/%d" % (download_count, len(link_list))
+	print "Downloaded: {}/{}".format(download_count, len(link_list)) 
 	#Rename the files 
 	for name in glob.glob('*.mp3'):
 		new_filename = name.replace("%20","")
 		os.rename(name, new_filename)
 if download_count == len(link_list):
-	print "Finished downloading at: " + str(datetime.datetime.now())
+	print "Finished downloading at: {}".format(str(datetime.datetime.now())) 
 
 
 
